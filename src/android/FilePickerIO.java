@@ -137,7 +137,7 @@ public class FilePickerIO extends CordovaPlugin {
                     callbackContext.error("json exception");
                 }
             } else {
-                callbackContext.error("nok");
+                callbackContext.error(resultCode);
             }
         }
         else {
