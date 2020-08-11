@@ -164,10 +164,7 @@ public class FilePickerIO extends CordovaPlugin {
     }
 
     public void parseStoreArgs(Intent intent, JSONArray args) throws JSONException {
-        
-        webView.loadUrl("javascript:console.log('hello from parseStoreArgs');");
-        
-        
+
         if (!args.isNull(5)) {
             intent.putExtra("location", args.getString(5));
         }
@@ -180,9 +177,11 @@ public class FilePickerIO extends CordovaPlugin {
         if (!args.isNull(8)) {
             intent.putExtra("access", args.getString(8));
         }
-        if (!args.isNull(9) && !args.isNull(10)) {
-            intent.putExtra("policy", args.getString(9));
-            intent.putExtra("signature", args.getString(10));
+        if (!args.isNull(9) && !args.isNull(10)) {            
+            JSONObject security = new JSONObject();
+            security.put("policy",  args.getString(9));
+            security.put("signature", args.getString(10));
+            intent.putExtra("security", security);
         }
     }
 
