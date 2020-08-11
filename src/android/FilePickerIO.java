@@ -177,11 +177,25 @@ public class FilePickerIO extends CordovaPlugin {
         if (!args.isNull(8)) {
             intent.putExtra("access", args.getString(8));
         }
-        if (!args.isNull(9) && !args.isNull(10)) {            
+        
+        System.out.println("test 01");
+        
+        if (!args.isNull(9) && !args.isNull(10)) {     
+            
+            System.out.println("test 02");
+            
             JSONObject security = new JSONObject();
             security.put("policy",  args.getString(9));
             security.put("signature", args.getString(10));
+            
+                    System.out.println("test 03");
+            
             intent.putExtra("security", security.toString());
+            
+                    System.out.println("test 04");
+                    System.out.println(security.toString());
+                    System.out.println(intent.toString());
+            
         }
     }
 
