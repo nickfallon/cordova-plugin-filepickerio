@@ -1,3 +1,4 @@
 dependencies {
-   compile 'io.filepicker:filepicker-android:3.9.1'
+//   compile 'io.filepicker:filepicker-android:3.9.1'
+   compile 'com.filestack:filestack-android:5.3.0'
 }
