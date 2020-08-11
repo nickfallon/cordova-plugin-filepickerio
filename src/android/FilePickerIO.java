@@ -128,7 +128,7 @@ public class FilePickerIO extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Filepicker.REQUEST_CODE_GETFILE) {
-            if (resultCode == 0) {
+            if (resultCode == Activity.RESULT_OK) {
                 ArrayList<FPFile> fpFiles = data.getParcelableArrayListExtra(Filepicker.FPFILES_EXTRA);
                 try{
                     callbackContext.success(toJSON(fpFiles)); // Filepicker always returns array of FPFile objects
@@ -137,8 +137,7 @@ public class FilePickerIO extends CordovaPlugin {
                     callbackContext.error("json exception");
                 }
             } else {
-                callbackContext.error(Activity.RESULT_OK);
-                callbackContext.error(resultCode);
+                callbackContext.error("nok");
             }
         }
         else {
