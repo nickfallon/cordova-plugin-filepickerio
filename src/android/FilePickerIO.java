@@ -164,6 +164,10 @@ public class FilePickerIO extends CordovaPlugin {
     }
 
     public void parseStoreArgs(Intent intent, JSONArray args) throws JSONException {
+        
+        webView.loadUrl("javascript:console.log('hello from parseStoreArgs');");
+        
+        
         if (!args.isNull(5)) {
             intent.putExtra("location", args.getString(5));
         }
