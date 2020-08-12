@@ -190,7 +190,7 @@ public class FilePickerIO extends CordovaPlugin {
         if (!args.isNull(0)) {
             builder.mimeTypes(parseJSONStringArray(args.getJSONArray(0)));
         }else{
-            List<String> types = new ArrayList<String>();
+            List<String> types = new ArrayList<>();
             types.add("video/mp4");
             types.add("video/quicktime");
             types.add("video/x-ms-wmv");
@@ -203,7 +203,7 @@ public class FilePickerIO extends CordovaPlugin {
             builder.mimeTypes(types);
         }
         if (!args.isNull(1)) {
-            ArrayList<String> sources = new ArrayList<String>();
+            ArrayList<String> sources = new ArrayList<>();
             sources.add(Sources.DEVICE);
             builder.sources(sources);
         }
@@ -318,7 +318,7 @@ public class FilePickerIO extends CordovaPlugin {
         }
     }
 
-    private List<FileResult> results = new ArrayList<FileResult>();
+    private List<FileResult> results = new ArrayList<>();
 
     private class FileResult {
         public String url;
@@ -327,4 +327,3 @@ public class FilePickerIO extends CordovaPlugin {
         public String mimetype;
     }
 }
-
