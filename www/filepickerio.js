@@ -1,3 +1,5 @@
+
+
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -40,6 +42,8 @@ function parseStoreArgs(args) {
     a.push(args.path || null);
     a.push(args.container || null);
     a.push(args.access || null);
+    a.push(args.policy || null);
+    a.push(args.signature || null);
     return a;
 }    
     
