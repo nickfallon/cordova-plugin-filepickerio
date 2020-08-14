@@ -1,3 +1,4 @@
+
 #import "FilePickerIO.h"
 #import <UIKit/UIKit.h>
 
@@ -52,6 +53,9 @@ FSConfig *config;
     storeOptions.path = [command.arguments objectAtIndex:6];
     storeOptions.container = [command.arguments objectAtIndex:7];
     storeOptions.access = [command.arguments objectAtIndex:8];
+    if ([command.arguments objectAtIndex:9] && [command.arguments objectAtIndex:10]) {
+        storeOptions.security = [[FSSecurity alloc] initWithPolicy:[command.arguments objectAtIndex:9] signature:[command.arguments objectAtIndex:10]];
+    }
     
     [self showPicker: command storeOptions:storeOptions];
   
@@ -81,6 +85,42 @@ FSConfig *config;
             config.storeOptions = storeOptions;
         }
         FSTheme *theme = [FSTheme filestackTheme];
+        UIColor *rlOrangeColor = [UIColor colorWithRed: 0.84 green: 0.50 blue: 0.13 alpha: 1.00];
+        UIColor *rlRedColor = [UIColor colorWithRed: 0.60 green: 0.00 blue: 0.00 alpha: 1.00];
+        UIColor *blackGrayColor = [UIColor colorWithRed: 0.20 green: 0.20 blue: 0.20 alpha: 1.00];
+        UIColor *darkGrayColor = [UIColor colorWithRed: 0.40 green: 0.40 blue: 0.40 alpha: 1.00];
+        UIColor *lightGray2Color = [UIColor colorWithRed: 0.98 green: 0.98 blue: 0.98 alpha: 1.00];
+        UIColor *rlMediumGrayColor = [UIColor colorWithRed: 0.60 green: 0.60 blue: 0.60 alpha: 1.00];
+        theme.navigationBarBackgroundColor = blackGrayColor;
+        theme.navigationBarTintColor = lightGray2Color;
+        theme.headerFooterViewTintColor = darkGrayColor;
+        theme.headerFooterViewTextColor = [UIColor whiteColor];
+        theme.tableViewSeparatorColor = [UIColor whiteColor];
+        theme.tableViewCellBackgroundColor = darkGrayColor;
+        theme.tableViewCellTextColor = [UIColor whiteColor];
+        theme.cellIconTintColor = rlOrangeColor;
+        theme.tableViewCellIconTintColor = rlOrangeColor;
+        theme.tableViewCellSelectedBackgroundColor = lightGray2Color;
+        theme.tableViewCellSelectedTextColor = blackGrayColor;
+        theme.tableViewCellImageViewBorderColor = blackGrayColor;
+        theme.collectionViewCellBorderColor = rlOrangeColor;
+        theme.collectionViewCellTitleTextColor = [UIColor whiteColor];
+        theme.uploadButtonTextColor = [UIColor whiteColor];
+        theme.uploadButtonBackgroundColor = rlOrangeColor;
+        theme.refreshControlTintColor = [UIColor whiteColor];
+        theme.refreshControlBackgroundColor = darkGrayColor;
+        theme.searchBarBackgroundColor = darkGrayColor;
+        theme.searchBarTintColor = rlOrangeColor;
+        theme.activityIndicatorColor = [UIColor whiteColor];
+        theme.progressCircleTrackColor = rlMediumGrayColor;
+        theme.progressCircleProgressColor = rlOrangeColor;
+
+        // These are more questionable assignments, they were not spec'd in the docs
+        theme.navigationBarTitleColor = [UIColor whiteColor];
+        theme.tableViewBackgroundColor = darkGrayColor;
+        theme.collectionViewBackgroundColor = darkGrayColor;
+        theme.collectionViewCellBackgroundColor = darkGrayColor;
+
         dispatch_async(dispatch_get_main_queue(), ^{
           FSPickerController *fsPickerController = [[FSPickerController alloc] initWithConfig:config theme:theme];
           fsPickerController.fsDelegate = self;
@@ -243,3 +283,4 @@ FSConfig *config;
      [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"cancelled"] callbackId:self.actionCallbackId];
  }
 @end
+
